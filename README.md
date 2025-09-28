@@ -1,16 +1,116 @@
-# fanit_mdtest
+Tentu, ini versi Markdown dari teks yang Anda berikan.
 
-A new Flutter project.
+# FAN IT Mobile Developer Test (Flutter)
 
-## Getting Started
+Project ini adalah implementasi tes teknikal **Mobile Developer** untuk FAN IT.
+Aplikasi dikembangkan menggunakan **Flutter**, dengan **Firebase Authentication** dan **Cloud Firestore** sebagai backend.
+State management menggunakan **Provider** dengan struktur folder berbasis **Clean Architecture** sederhana.
 
-This project is a starting point for a Flutter application.
+-----
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Fitur Utama
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1.  **Authentication**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+      - Login dengan email & password
+      - Register akun baru dengan email & password
+      - Forgot Password (reset password via email)
+      - Email Verification (kirim & cek status)
+
+2.  **Home Page**
+
+      - Menampilkan data user yang sedang login (nama, email, status verifikasi)
+      - Menampilkan daftar user dari Firestore
+      - Filter daftar user berdasarkan status verifikasi (Verified / Not Verified)
+      - Pencarian user berdasarkan nama atau email
+
+3.  **Extra**
+
+      - Splash Screen → redirect otomatis ke Home jika sudah login, ke Login jika belum
+      - Logout
+      - Error handling dasar (FirebaseAuthException ditangani & ditampilkan via SnackBar)
+      - Struktur kode rapi & clean, mudah untuk dikembangkan lebih lanjut
+
+-----
+
+## 📂 Struktur Folder
+
+```
+lib/
+├─ core/             # Error, utils
+├─ data/
+│  ├─ models/        # Model Firestore
+│  └─ repositories/  # Implementasi AuthRepository (Firebase)
+├─ domain/
+│  ├─ entities/      # Entity User
+│  └─ repositories/  # Abstraksi AuthRepository
+├─ presentation/
+│  ├─ providers/     # State management (Provider/ChangeNotifier)
+│  ├─ pages/         # UI pages (Login, Register, Forgot, Home, Splash)
+│  └─ widgets/       # Widget kecil reusable
+└─ main.dart         # Entry point + setup Firebase + Provider
+```
+
+-----
+
+## 🛠️ Setup & Instalasi
+
+### 1\. Clone Repository
+
+```bash
+git clone https://github.com/rezakurniasetiawan/rezakurniasetiawan_mdtest/tree/reza/dev
+cd rezakurniasetiawan_mdtest
+```
+
+### 2\. Install Dependencies
+
+```bash
+flutter pub get
+```
+
+### 3\. Setup Firebase
+
+1.  Buat project di [Firebase Console](https://console.firebase.google.com/).
+
+2.  Tambahkan aplikasi Android & iOS.
+
+3.  Download file konfigurasi:
+
+      - `google-services.json` → taruh di `android/app/`
+      - `GoogleService-Info.plist` → taruh di `ios/Runner/`
+
+4.  Enable **Email/Password Authentication** di Firebase Console.
+
+5.  Buat **Firestore Database** (gunakan mode test untuk development) dengan struktur berikut:
+
+    ```
+    users (collection)
+     └─ <uid> (document)
+          ├─ name: string
+          ├─ email: string
+          ├─ emailVerified: bool
+          └─ createdAt: timestamp
+    ```
+
+### 4\. Jalankan Aplikasi
+
+```bash
+flutter run
+```
+
+-----
+
+## 📱 Teknologi yang Digunakan
+
+  - **Flutter (3.x)**
+  - **Provider** (state management)
+  - **Firebase Authentication** (Email/Password, Email Verification, Password Reset)
+  - **Cloud Firestore** (User list & data)
+  - **Dart** (Null Safety, Clean Code Principle)
+
+-----
+
+## 👤 Author
+
+**Reza Kurnia Setiawan**
+Mobile Developer | Flutter Enthusiast
